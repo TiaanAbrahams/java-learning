@@ -1,7 +1,8 @@
 public class Test {
     public static void main(String[] args) {
         inFlight(new Jet());
-
+        OrbitEarth.log("Testing" + new Satellite());
+        inOrbit(new Satellite());
     }
 
     private static void inFlight(FlightEnabled flier){
@@ -11,6 +12,12 @@ public class Test {
         if(flier instanceof Trackable trackable){
             trackable.track();
         }
+        flier.land();
+    }
+
+    private static void inOrbit(OrbitEarth flier){
+        flier.takeOff();
+        flier.fly();
         flier.land();
     }
 }

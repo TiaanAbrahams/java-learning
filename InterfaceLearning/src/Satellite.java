@@ -1,6 +1,9 @@
-import java.sql.SQLOutput;
 
-enum FlightStages implements Trackable{GROUNDED, LAUNCH, CRUISE, DATA_COLLECTION;
+enum FlightStages implements Trackable{
+    GROUNDED,
+    LAUNCH,
+    CRUISE,
+    DATA_COLLECTION;
 
     @Override
     public void track() {
@@ -30,22 +33,29 @@ record dragonFly(String name, String type) implements FlightEnabled{
     }
 }
 public class Satellite implements OrbitEarth {
+    FlightStages stage = FlightStages.GROUNDED;
     @Override
     public void takeOff(){
-        System.out.println(getClass().getSimpleName() + " is taking off");
+        transition("Taking off...");
     }
     @Override
     public void achieveOrbit(){
-        System.out.println(getClass().getSimpleName() + " is in orbit");
+        transition("Orbit achieved");
     }
 
     @Override
     public void fly() {
-
+        achieveOrbit();
+        transition("Data collection while orbiting");
     }
 
     @Override
     public void land() {
-
+        transition("Landing...");
+    }
+    public void transition(String description){
+        System.out.println(description);
+        transition(stage);
+        stage.track();
     }
 }
