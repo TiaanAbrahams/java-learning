@@ -10,7 +10,6 @@ public class MyLinkedList implements NodeList{
     }
 
     public boolean addItem(ListItem item){
-        root.rightLink = item;
         return true;
     }
 
