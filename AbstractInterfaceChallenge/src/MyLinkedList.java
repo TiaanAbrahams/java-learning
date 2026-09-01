@@ -5,13 +5,23 @@ public class MyLinkedList implements NodeList{
         this.root = root;
     }
 
-    ListItem getRoot(){
+    public ListItem getRoot(){
         return root;
     }
 
-    boolean addItem(ListItem item){
+    public boolean addItem(ListItem item){
         root.rightLink = item;
+        return true;
+    }
 
+    @Override
+    public void removeItem() {
+        System.out.println("remover item called");
+    }
+
+    @Override
+    public void traverse() {
+        System.out.println("tracerse method called");
     }
 }
 /**

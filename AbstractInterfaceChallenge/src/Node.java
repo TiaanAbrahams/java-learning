@@ -26,7 +26,7 @@ public class Node extends ListItem {
     }
     @Override
     int compareTo(ListItem item){
-
+        return item.toString().compareTo(item.getValue().toString());
     }
 }
 /**
