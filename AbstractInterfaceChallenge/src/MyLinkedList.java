@@ -13,49 +13,93 @@ public class MyLinkedList implements NodeList{
         ListItem currentItem = root;
         int comp;
 
-        //Add item if list is empty
+        // Add item if list is empty
         if(currentItem == null){
             root = item;
             return true;
         }
 
-       while(true){
-           System.out.println("#".repeat(20));
-           System.out.println("Loop current item " + currentItem.getValue());
+        while(true){
+            System.out.println("#".repeat(20));
+            System.out.println("Loop current item " + currentItem.getValue());
 
-           if(currentItem.next() == null && item.compareTo(currentItem) > 0){
-               System.out.println(item.getValue() + " == null when comp == 1");
-               currentItem.setNext(item);
-               return true;
-           }
+            comp = item.compareTo(currentItem);
 
-           if(currentItem.next() == null && item.compareTo(currentItem) < 0){
-               System.out.println(item.getValue() + " == null && when comp == -1");
-               currentItem.setPrevious(item);
-               item.setNext(currentItem);
-               root = item;
-               currentItem = item;
-               return true;
-           }
-           if(currentItem.next() != null && item.compareTo(currentItem) < 0){
-               System.out.println(item.getValue() + " != null && when comp == -1");
-               //currentItem.setPrevious(item);
-               return true;
-           }
+            // Add after currentItem if currentItem is the last node
+            if(currentItem.next() == null && comp > 0){
+                System.out.println(item.getValue() + " added after " + currentItem.getValue());
 
-           System.out.println("Item name: " + item.getValue());
-           if(currentItem.next() == null){
-               break;
-           }
-           currentItem = currentItem.next();
+                currentItem.setNext(item);
+                item.setPrevious(currentItem);
 
-       }
-       return true;
+                return true;
+            }
+
+            // Add before the root
+            if(currentItem.previous() == null && comp < 0){
+                System.out.println(item.getValue() + " added before root");
+
+                currentItem.setPrevious(item);
+                item.setNext(currentItem);
+                root = item;
+
+                return true;
+            }
+
+            // Add before currentItem somewhere in the middle
+            if(currentItem.previous() != null && comp < 0){
+                System.out.println(item.getValue() + " added before " + currentItem.getValue());
+
+                ListItem previousItem = currentItem.previous();
+
+                previousItem.setNext(item);
+                item.setPrevious(previousItem);
+
+                item.setNext(currentItem);
+                currentItem.setPrevious(item);
+
+                return true;
+            }
+
+            // Duplicate
+            if(comp == 0){
+                return false;
+            }
+
+            System.out.println("Item name: " + item.getValue());
+
+            if(currentItem.next() == null){
+                break;
+            }
+
+            currentItem = currentItem.next();
+        }
+
+        return false;
     }
 
     @Override
-    public void removeItem() {
-        System.out.println("remover item called");
+    public void removeItem(ListItem item) {
+        ListItem currentItem = root;
+        ListItem previousItem = null;
+        int num = 0;
+        while(true){
+            if(item.getValue().equals(currentItem.getValue())){
+                if (currentItem.previous() == null){
+                    root = currentItem.next();
+                } else if (currentItem.next() == null) {
+                    currentItem.previous().setNext(null);
+                }else{
+                    currentItem.previous().setNext(currentItem.next());
+                    currentItem.next().setPrevious(currentItem.previous());
+                }
+                System.out.println(item.getValue() + " Deleted");
+            }
+            if(currentItem.next() == null){
+                break;
+            }
+            currentItem = currentItem.next();
+        }
     }
 
     @Override

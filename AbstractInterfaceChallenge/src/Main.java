@@ -12,5 +12,8 @@ public class Main {
         System.out.println("*".repeat(20));
         list.traverse();
 
+        list.removeItem(new Node("Bob"));
+
+        list.traverse();
     }
 }
