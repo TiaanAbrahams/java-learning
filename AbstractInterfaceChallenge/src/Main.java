@@ -1,9 +1,16 @@
 
 public class Main {
     public static void main(String[] args) {
-        Node node1 = new Node("Apple");
-        Node node2 = new Node("Banana");
+        MyLinkedList list = new MyLinkedList(null);
 
-        System.out.println(node2.compareTo(node1));
+        System.out.println(list.addItem(new Node("Bob")));
+        System.out.println(list.addItem(new Node("Alice")));
+        System.out.println(list.addItem(new Node("Charlie")));
+        System.out.println(list.addItem(new Node("Tiaan")));
+
+        System.out.println(list.getRoot().getValue());
+        System.out.println("*".repeat(20));
+        list.traverse();
+
     }
 }

@@ -10,7 +10,47 @@ public class MyLinkedList implements NodeList{
     }
 
     public boolean addItem(ListItem item){
-        return true;
+        ListItem currentItem = root;
+        int comp;
+
+        //Add item if list is empty
+        if(currentItem == null){
+            root = item;
+            return true;
+        }
+
+       while(true){
+           System.out.println("#".repeat(20));
+           System.out.println("Loop current item " + currentItem.getValue());
+
+           if(currentItem.next() == null && item.compareTo(currentItem) > 0){
+               System.out.println(item.getValue() + " == null when comp == 1");
+               currentItem.setNext(item);
+               return true;
+           }
+
+           if(currentItem.next() == null && item.compareTo(currentItem) < 0){
+               System.out.println(item.getValue() + " == null && when comp == -1");
+               currentItem.setPrevious(item);
+               item.setNext(currentItem);
+               root = item;
+               currentItem = item;
+               return true;
+           }
+           if(currentItem.next() != null && item.compareTo(currentItem) < 0){
+               System.out.println(item.getValue() + " != null && when comp == -1");
+               //currentItem.setPrevious(item);
+               return true;
+           }
+
+           System.out.println("Item name: " + item.getValue());
+           if(currentItem.next() == null){
+               break;
+           }
+           currentItem = currentItem.next();
+
+       }
+       return true;
     }
 
     @Override
@@ -20,7 +60,13 @@ public class MyLinkedList implements NodeList{
 
     @Override
     public void traverse() {
-        System.out.println("tracerse method called");
+        ListItem currentItem = root;
+
+        do{
+            System.out.println(currentItem.getValue());
+            currentItem = currentItem.next();
+        }
+            while(currentItem != null);
     }
 }
 /**

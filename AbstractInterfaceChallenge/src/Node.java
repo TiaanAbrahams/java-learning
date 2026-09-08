@@ -12,8 +12,8 @@ public class Node extends ListItem {
 
     @Override
     ListItem setNext(ListItem item) {
-        item = rightLink;
-        return item;
+        rightLink = item;
+        return rightLink;
     }
     @Override
     ListItem previous(){
@@ -21,8 +21,8 @@ public class Node extends ListItem {
     }
     @Override
     ListItem setPrevious(ListItem item){
-        item = leftLink;
-        return item;
+        leftLink = item;
+        return leftLink;
     }
     @Override
     int compareTo(ListItem item){
