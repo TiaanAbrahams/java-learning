@@ -1,10 +1,8 @@
 public class MyLinkedList implements NodeList{
     ListItem root;
-
     public MyLinkedList(ListItem root) {
         this.root = root;
     }
-
     public ListItem getRoot(){
         return root;
     }
@@ -20,25 +18,18 @@ public class MyLinkedList implements NodeList{
         }
 
         while(true){
-            System.out.println("#".repeat(20));
-            System.out.println("Loop current item " + currentItem.getValue());
 
             comp = item.compareTo(currentItem);
 
             // Add after currentItem if currentItem is the last node
             if(currentItem.next() == null && comp > 0){
-                System.out.println(item.getValue() + " added after " + currentItem.getValue());
-
                 currentItem.setNext(item);
                 item.setPrevious(currentItem);
-
                 return true;
             }
 
             // Add before the root
             if(currentItem.previous() == null && comp < 0){
-                System.out.println(item.getValue() + " added before root");
-
                 currentItem.setPrevious(item);
                 item.setNext(currentItem);
                 root = item;
@@ -48,8 +39,6 @@ public class MyLinkedList implements NodeList{
 
             // Add before currentItem somewhere in the middle
             if(currentItem.previous() != null && comp < 0){
-                System.out.println(item.getValue() + " added before " + currentItem.getValue());
-
                 ListItem previousItem = currentItem.previous();
 
                 previousItem.setNext(item);
@@ -60,18 +49,13 @@ public class MyLinkedList implements NodeList{
 
                 return true;
             }
-
             // Duplicate
             if(comp == 0){
                 return false;
             }
-
-            System.out.println("Item name: " + item.getValue());
-
             if(currentItem.next() == null){
                 break;
             }
-
             currentItem = currentItem.next();
         }
 
@@ -79,9 +63,10 @@ public class MyLinkedList implements NodeList{
     }
 
     @Override
-    public void removeItem(ListItem item) {
+    public boolean removeItem(ListItem item) {
         ListItem currentItem = root;
         ListItem previousItem = null;
+
         int num = 0;
         while(true){
             if(item.getValue().equals(currentItem.getValue())){
@@ -93,10 +78,10 @@ public class MyLinkedList implements NodeList{
                     currentItem.previous().setNext(currentItem.next());
                     currentItem.next().setPrevious(currentItem.previous());
                 }
-                System.out.println(item.getValue() + " Deleted");
+                return true;
             }
             if(currentItem.next() == null){
-                break;
+                return false;
             }
             currentItem = currentItem.next();
         }
@@ -104,8 +89,12 @@ public class MyLinkedList implements NodeList{
 
     @Override
     public void traverse() {
-        ListItem currentItem = root;
-
+        ListItem currentItem;
+        if(root == null){
+            System.out.println("The list is empty");
+            return;
+        }
+        currentItem = root;
         do{
             System.out.println(currentItem.getValue());
             currentItem = currentItem.next();
