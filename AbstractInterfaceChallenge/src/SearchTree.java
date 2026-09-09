@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 public class SearchTree implements NodeList{
     ListItem root;
 
@@ -16,18 +18,13 @@ public class SearchTree implements NodeList{
     }
 
     @Override
-    public void traverse() {
+    public void traverse(ListItem rootArg) {
         ListItem currentItem;
         if(root == null){
             System.out.println("The list is empty");
             return;
         }
-        currentItem = root;
-        do{
-            System.out.println(currentItem.getValue());
-            currentItem = currentItem.next();
-        }
-        while(currentItem != null);
+
     }
 
 
@@ -35,31 +32,41 @@ public class SearchTree implements NodeList{
     public boolean addItem(ListItem item) {
         ListItem currentItem = root;
         if(root == null){
-            root = currentItem;
+            root = item;
             return true;
         }
 
         int compare;
         while(true){
                 compare = item.compareTo(currentItem);
+                System.out.println("*".repeat(20));
+                System.out.println(item.getValue() + " Item");
+                System.out.println(currentItem.getValue() + " currentItem");
+                System.out.println("*".repeat(20));
 
                 if (currentItem.next() != null && compare > 0){
                     System.out.println("Moving right");
                     currentItem = currentItem.next();
+                    continue;
                 }
                 if(currentItem.previous() != null && compare < 0){
                     System.out.println("Moving to the left");
                     currentItem = currentItem.previous();
+                    continue;
                 }
                 if(currentItem.next() == null && compare > 0){
+                    System.out.println("compare > 0");
                     currentItem.setNext(item);
-                    item.setPrevious(currentItem);
                     return true;
                 }
                 if(currentItem.previous() == null && compare < 0){
+                    System.out.println("compare < 0");
                     currentItem.setPrevious(item);
-                    item.setNext(currentItem);
+                    return true;
                 }
+            if (compare == 0) {
+                return false;
+            }
         }
 
     }

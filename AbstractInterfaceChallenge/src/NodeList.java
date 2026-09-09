@@ -2,7 +2,7 @@ public interface NodeList {
     ListItem getRoot();
     boolean addItem(ListItem item);
     boolean removeItem(ListItem item);
-    void traverse();
+    void traverse(ListItem rootArg);
 }
 /**
  NodeList (interface)

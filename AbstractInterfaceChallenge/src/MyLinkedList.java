@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 public class MyLinkedList implements NodeList{
     ListItem root;
     public MyLinkedList(ListItem root) {
@@ -88,13 +90,13 @@ public class MyLinkedList implements NodeList{
     }
 
     @Override
-    public void traverse() {
+    public void traverse(ListItem rootArg) {
         ListItem currentItem;
         if(root == null){
             System.out.println("The list is empty");
             return;
         }
-        currentItem = root;
+        currentItem = rootArg;
         do{
             System.out.println(currentItem.getValue());
             currentItem = currentItem.next();
