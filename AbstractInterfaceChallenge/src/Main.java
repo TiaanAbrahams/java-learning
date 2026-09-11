@@ -14,13 +14,12 @@ public class Main {
         System.out.println(list.addItem(alice));
         System.out.println(list.addItem(tiaan));
 
-        //System.out.println(list.getRoot().getValue());
 
         System.out.println("*".repeat(20) + " List");
 
-        list.traverse(bob);
-
+        //list.traverse(null);
+        System.out.println("*".repeat(20));
         list.removeItem(tiaan);
-
+        //list.traverse(bob);
     }
 }

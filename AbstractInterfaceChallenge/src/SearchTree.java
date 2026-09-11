@@ -12,23 +12,52 @@ public class SearchTree implements NodeList{
         return root;
     }
 
-    @Override
     public boolean removeItem(ListItem item) {
-        ListItem itemDel = item;
 
-        if(item == null){
-            return false;
+        ListItem current = root;
+        ListItem parent = null;
+        String leftRight = null;
+
+        while (current != null) {
+
+            int comparison = current.compareTo(item);
+
+            if (comparison > 0) {
+                parent = current;
+                current = current.leftLink;
+                leftRight = "l";
+
+            } else if (comparison < 0) {
+                parent = current;
+                current = current.rightLink;
+                leftRight = "r";
+
+            } else {
+                // Found the item
+                System.out.println("Found " + current.getValue());
+
+                //right link of parent
+                if(parent.rightLink.getValue() == current.getValue()){
+                    if(current.leftLink != null){
+                        parent.setNext(current.leftLink);
+                    }
+                    if(current.rightLink != null){
+                        parent.setPrevious(current.rightLink);
+                    }
+                }
+                //left link of parent
+                if(parent.leftLink.getValue() == current.getValue()){
+                    if(current.leftLink != null){
+                        parent.setNext(current.leftLink);
+                    }
+                    if(current.rightLink != null){
+                        parent.setPrevious(current.rightLink);
+                    }
+                }
+                return true;
+            }
         }
-        System.out.println("Before left link " + item.getValue());
-        removeItem(item.leftLink);
 
-        if (item.getValue().equals(itemDel.getValue())){
-            System.out.println("Item found");
-            return true;
-        }
-
-        removeItem(item.rightLink);
-        System.out.println("After Right link" + item.getValue());
         return false;
     }
 
