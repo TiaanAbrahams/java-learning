@@ -14,6 +14,21 @@ public class SearchTree implements NodeList{
 
     @Override
     public boolean removeItem(ListItem item) {
+        ListItem itemDel = item;
+
+        if(item == null){
+            return false;
+        }
+        System.out.println("Before left link " + item.getValue());
+        removeItem(item.leftLink);
+
+        if (item.getValue().equals(itemDel.getValue())){
+            System.out.println("Item found");
+            return true;
+        }
+
+        removeItem(item.rightLink);
+        System.out.println("After Right link" + item.getValue());
         return false;
     }
 
@@ -23,7 +38,9 @@ public class SearchTree implements NodeList{
             return;
         }
         traverse(rootArg.leftLink);
+
         System.out.println(rootArg.getValue());
+
         traverse(rootArg.rightLink);
     }
 

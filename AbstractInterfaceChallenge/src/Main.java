@@ -20,5 +20,7 @@ public class Main {
 
         list.traverse(bob);
 
+        list.removeItem(tiaan);
+
     }
 }
