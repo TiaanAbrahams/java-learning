@@ -91,12 +91,24 @@ public class MyLinkedList implements NodeList{
 
     @Override
     public void traverse(ListItem rootArg) {
-        ListItem currentItem;
+        ListItem currentItem = root;
         if(root == null){
             System.out.println("The list is empty");
             return;
         }
-        currentItem = rootArg;
+        while(true){
+            if (rootArg == null){
+                break;
+            }
+            if(currentItem.getValue() == rootArg.getValue()){
+                break;
+            }
+            if(currentItem.next() != null) {
+                currentItem = currentItem.next();
+                continue;
+            }
+            break;
+        }
         do{
             System.out.println(currentItem.getValue());
             currentItem = currentItem.next();

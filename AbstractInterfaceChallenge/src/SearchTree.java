@@ -19,12 +19,12 @@ public class SearchTree implements NodeList{
 
     @Override
     public void traverse(ListItem rootArg) {
-        ListItem currentItem;
-        if(root == null){
-            System.out.println("The list is empty");
+        if(rootArg == null){
             return;
         }
-
+        traverse(rootArg.leftLink);
+        System.out.println(rootArg.getValue());
+        traverse(rootArg.rightLink);
     }
 
 
@@ -39,6 +39,7 @@ public class SearchTree implements NodeList{
         int compare;
         while(true){
                 compare = item.compareTo(currentItem);
+
                 System.out.println("*".repeat(20));
                 System.out.println(item.getValue() + " Item");
                 System.out.println(currentItem.getValue() + " currentItem");
