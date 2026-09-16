@@ -53,6 +53,9 @@ public class SearchTree implements NodeList {
 
     @Override
     public boolean removeItem(ListItem item) {
+        if(item == null){
+            return false;
+        }
 
         ListItem current = root;
         ListItem parent = null;
