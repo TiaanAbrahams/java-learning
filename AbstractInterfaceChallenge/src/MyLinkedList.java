@@ -68,6 +68,9 @@ public class MyLinkedList implements NodeList{
     public boolean removeItem(ListItem item) {
         ListItem currentItem = root;
         ListItem previousItem = null;
+        if(item == null){
+            return false;
+        }
 
         int num = 0;
         while(true){
