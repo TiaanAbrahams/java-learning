@@ -1,7 +1,6 @@
-import java.util.LinkedList;
+public class SearchTree implements NodeList {
 
-public class SearchTree implements NodeList{
-    ListItem root;
+    private ListItem root;
 
     public SearchTree(ListItem root) {
         this.root = root;
@@ -12,49 +11,40 @@ public class SearchTree implements NodeList{
         return root;
     }
 
-    public boolean removeItem(ListItem item) {
+    @Override
+    public boolean addItem(ListItem newItem) {
+
+        if (root == null) {
+            root = newItem;
+            return true;
+        }
 
         ListItem current = root;
-        ListItem parent = null;
-        String leftRight = null;
 
         while (current != null) {
 
-            int comparison = current.compareTo(item);
+            int comparison = current.compareTo(newItem);
 
             if (comparison > 0) {
-                parent = current;
-                current = current.leftLink;
-                leftRight = "l";
+
+                if (current.previous() != null) {
+                    current = current.previous();
+                } else {
+                    current.setPrevious(newItem);
+                    return true;
+                }
 
             } else if (comparison < 0) {
-                parent = current;
-                current = current.rightLink;
-                leftRight = "r";
+
+                if (current.next() != null) {
+                    current = current.next();
+                } else {
+                    current.setNext(newItem);
+                    return true;
+                }
 
             } else {
-                // Found the item
-                System.out.println("Found " + current.getValue());
-
-                //right link of parent
-                if(parent.rightLink.getValue() == current.getValue()){
-                    if(current.leftLink != null){
-                        parent.setNext(current.leftLink);
-                    }
-                    if(current.rightLink != null){
-                        parent.setPrevious(current.rightLink);
-                    }
-                }
-                //left link of parent
-                if(parent.leftLink.getValue() == current.getValue()){
-                    if(current.leftLink != null){
-                        parent.setNext(current.leftLink);
-                    }
-                    if(current.rightLink != null){
-                        parent.setPrevious(current.rightLink);
-                    }
-                }
-                return true;
+                return false;
             }
         }
 
@@ -62,103 +52,107 @@ public class SearchTree implements NodeList{
     }
 
     @Override
-    public void traverse(ListItem rootArg) {
-        if(rootArg == null){
-            return;
-        }
-        traverse(rootArg.leftLink);
+    public boolean removeItem(ListItem item) {
 
-        System.out.println(rootArg.getValue());
+        ListItem current = root;
+        ListItem parent = null;
 
-        traverse(rootArg.rightLink);
-    }
+        while (current != null) {
 
+            int comparison = current.compareTo(item);
 
-    @Override
-    public boolean addItem(ListItem item) {
-        ListItem currentItem = root;
-        if(root == null){
-            root = item;
-            return true;
-        }
+            if (comparison > 0) {
+                parent = current;
+                current = current.previous();
 
-        int compare;
-        while(true){
-                compare = item.compareTo(currentItem);
+            } else if (comparison < 0) {
+                parent = current;
+                current = current.next();
 
-                System.out.println("*".repeat(20));
-                System.out.println(item.getValue() + " Item");
-                System.out.println(currentItem.getValue() + " currentItem");
-                System.out.println("*".repeat(20));
-
-                if (currentItem.next() != null && compare > 0){
-                    System.out.println("Moving right");
-                    currentItem = currentItem.next();
-                    continue;
-                }
-                if(currentItem.previous() != null && compare < 0){
-                    System.out.println("Moving to the left");
-                    currentItem = currentItem.previous();
-                    continue;
-                }
-                if(currentItem.next() == null && compare > 0){
-                    System.out.println("compare > 0");
-                    currentItem.setNext(item);
-                    return true;
-                }
-                if(currentItem.previous() == null && compare < 0){
-                    System.out.println("compare < 0");
-                    currentItem.setPrevious(item);
-                    return true;
-                }
-            if (compare == 0) {
-                return false;
+            } else {
+                performRemoval(current, parent);
+                return true;
             }
         }
 
+        return false;
+    }
+
+    private void performRemoval(ListItem item, ListItem parent) {
+
+        if (item.previous() == null && item.next() == null) {
+
+            if (parent == null) {
+                root = null;
+            } else if (parent.previous() == item) {
+                parent.setPrevious(null);
+            } else {
+                parent.setNext(null);
+            }
+
+        } else if (item.previous() != null && item.next() == null) {
+
+            if (parent == null) {
+                root = item.previous();
+            } else if (parent.previous() == item) {
+                parent.setPrevious(item.previous());
+            } else {
+                parent.setNext(item.previous());
+            }
+
+        } else if (item.previous() == null) {
+
+            if (parent == null) {
+                root = item.next();
+            } else if (parent.previous() == item) {
+                parent.setPrevious(item.next());
+            } else {
+                parent.setNext(item.next());
+            }
+
+        } else {
+
+            ListItem replacementParent = item;
+            ListItem replacement = item.previous();
+
+            while (replacement.next() != null) {
+                replacementParent = replacement;
+                replacement = replacement.next();
+            }
+
+            if (replacementParent != item) {
+                replacementParent.setNext(replacement.previous());
+                replacement.setPrevious(item.previous());
+            }
+
+            replacement.setNext(item.next());
+
+            if (parent == null) {
+                root = replacement;
+            } else if (parent.previous() == item) {
+                parent.setPrevious(replacement);
+            } else {
+                parent.setNext(replacement);
+            }
+        }
+    }
+
+    @Override
+    public void traverse(ListItem root) {
+
+        if (root == null) {
+            System.out.println("The list is empty");
+            return;
+        }
+
+        if (root.previous() != null) {
+            traverse(root.previous());
+        }
+
+        System.out.println(root.getValue());
+
+        if (root.next() != null) {
+            traverse(root.next());
+        }
     }
 }
-
-//SearchTree (concrete class)
-//
-//    -  It implements NodeList.
-//
-//    -  It has one field of type ListItem called root.
-//
-//    -  A constructor that takes a ListItem and initialises the field root with the newly passed in parameter.
-//
-//    -  And five methods:
-//
-//        -  getRoot(), getter for root.
-//
-//        -  addItem(), similar to MyLinkedList. See second TIP below.
-//
-//        -  removeItem(), same as MyLinkedList.
-//
-//        -  performRemoval(), takes two ListItems, the item to be removed and its parent.
-//           It doesn't return anything and is declared as private. Call this method from removeItem() when the item is found.
-//
-//        -  traverse(), takes the root as an argument and does not return anything.
-//           It uses recursion to visit all the branches in the tree (Inorder). Print each value on a seperate line.
-
-//TIP:  The rules for adding an item to the linked tree are:
-//If the head of the tree is null, make the head refer to the item to be added.
-//If the item to be added is less than the current item in the tree,
-//add the item before the current item (i.e., make the previous item's "next" refer to the new item,
-//        and the new item's "next" refer to the current item).
-//        If the item to be added is greater than the current item, move onto the next item and compare again
-//                                              (if there is no next item, then that is where the new item belongs).
-//
-//TIP:  When adding items to a Binary Search Tree, if the item to be added is less than the current item, then move to the left.
-//If it is greater than the current item, then move to the right.
-//The new item is added when an attempt to move in the required direction would involve following a null reference.
-//        Once again, duplicates are not allowed.
-//
-//        TIP:  Inorder = print the previous node, then the parent node, and then the next node (left -> node -> right).
-//
-//
-//
-//TIP:  Be extremely careful with the spelling of the names of the fields, constructors and methods.
-//
-//TIP:  Be extremely careful about spaces and spelling in the printed output from the traverse() method.
-//

@@ -6,6 +6,10 @@ public class Main {
         Node charlie = new Node("Charlie");
         Node bob = new Node("Bob");
         Node tiaan = new Node("Tiaan");
+        Node mike = new Node("Mike");
+        Node zara = new Node("Zara");
+        Node john = new Node("John");
+        Node peter = new Node("Peter");
 
         SearchTree list = new SearchTree(null);
 
@@ -13,13 +17,18 @@ public class Main {
         System.out.println(list.addItem(charlie));
         System.out.println(list.addItem(alice));
         System.out.println(list.addItem(tiaan));
+        System.out.println(list.addItem(mike));
+        System.out.println(list.addItem(zara));
+        System.out.println(list.addItem(john));
+        System.out.println(list.addItem(peter));
 
 
         System.out.println("*".repeat(20) + " List");
 
         //list.traverse(null);
-        System.out.println("*".repeat(20));
+
         list.removeItem(tiaan);
-        //list.traverse(bob);
+        System.out.println("*".repeat(20));
+        list.traverse(bob);
     }
 }
