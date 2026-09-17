@@ -1,0 +1,53 @@
+The Interface Challenge — Requirements
+
+Collected requirements from instruction pages 1–5
+
+Challenge context
+
+The challenge is about creating mappable output.
+
+Things drawn on a map generally fall into three categories: a point, a line, or a polygon/geometric shape.
+
+The result of the code will be text that could be written to a file for exchanging data with a mapping application.
+
+The output is based on GeoJSON, which is a JSON format extended for geographical elements.
+
+You do not need prior knowledge of JSON or GeoJSON to complete the challenge.
+
+For this challenge, create a String for every feature that will be mapped.
+
+Example property format shown in the instructions: "properties": { "name": "Sydney Opera House", "usage": "Entertainment" }
+
+1. Create a Mappable interface
+
+The interface must force implementing classes to provide three methods:
+
+A method that returns a label describing how the item will be described on the map.
+
+A method that returns a geometry type. The required geometry types are POINT or LINE.
+
+A method that returns an icon type, also referred to as a map marker.
+
+The interface must also include:
+
+A constant String named JSON_PROPERTY with the value: "properties":{%s}.
+
+A default method named toJSON() that prints the type, label, and marker.
+
+A static method that takes a Mappable instance as an argument.
+
+The static method must print the properties for each mappable type, including the three values above and any other fields defined on the implementing business classes.
+
+2. Create two classes that implement Mappable
+
+Create a Building class.
+
+Create a UtilityLine class.
+
+The Building class must use geometry type POINT.
+
+The UtilityLine class must use geometry type LINE.
+
+The Building represents a point on a city map and must have the specified label and icon for that building.
+
+The UtilityLine represents a line on the map.
