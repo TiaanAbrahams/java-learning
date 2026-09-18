@@ -1,13 +1,12 @@
 public class Building implements Mappable{
-    private Geomitry point = Geomitry.POINT;
-
-    private String usage;
-    private String iconType;
+    private Geomitry point;
+    private String type;
     private String name;
 
-    public Building(String name, String usage) {
+    public Building(String name, String type) {
         this.name = name.toLowerCase();
-        this.usage = usage;
+        this.type = type;
+        this.point = Geomitry.POINT;
     }
 
     @Override
@@ -16,13 +15,13 @@ public class Building implements Mappable{
     }
 
     @Override
-    public String getShape() {
-        return Geomitry.SHAPE.getShape();
+    public Geomitry getShape() {
+        return Geomitry.POINT;
     }
 
     @Override
     public String getMarker() {
-        return switch (usage){
+        return switch (type){
             case "gas station" -> "fuel pump";
             case "restaurant" -> "knife and fork";
             case "nature reserve" -> "animal shape";
