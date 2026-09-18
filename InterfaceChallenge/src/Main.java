@@ -11,10 +11,9 @@ public class Main {
         mappables.add(new Building("Stadium Australia", UsageType.SPORTS));
 
         mappables.add(new UtilityLine("Australia Main pipe", UtilityLine.UsageType.SEWAGE));
-
-        Iterator<Mappable> i = mappables.iterator();
-        while (i.hasNext()){
-            Mappable.mapIt(i.next());
+        
+        for(var i: mappables){
+            Mappable.mapIt(i);
         }
     }
 }
