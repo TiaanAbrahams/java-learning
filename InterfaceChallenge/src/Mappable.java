@@ -20,7 +20,8 @@ public interface Mappable {
         BLACK,
         ORANGE,
         YELLOW,
-        RED;
+        RED,
+        BLUE;
     }
     public static String JSON_PROPERTY = """
            "properties": {%s}""";
