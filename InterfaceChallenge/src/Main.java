@@ -1,5 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello and welcome!");
+        Mappable mappable = new Building("Astron", "gas station");
+
+        Mappable.mapIt(mappable);
     }
 }

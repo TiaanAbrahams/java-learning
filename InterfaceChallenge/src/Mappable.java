@@ -1,12 +1,18 @@
 public interface Mappable {
     public static String JSON_PROPERTY = """
-            {%S}""";
+           "properties": {%s}""";
 
     String getLabel();
-    String getShape();
+    Geomitry getShape();
     String getMarker();
 
     default String toJSON(){
-        return JSON_PROPERTY;
+        return """
+                "type": "%s" "label": "%s" "marker": "%s" """
+                .formatted(getShape(),getLabel(),getMarker());
+    }
+
+    static void mapIt(Mappable mappable){
+        System.out.println(JSON_PROPERTY.formatted(mappable.toJSON()));
     }
 }
