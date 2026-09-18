@@ -1,4 +1,27 @@
 public interface Mappable {
+    enum Geomitry {
+        POINT,
+        LINE,
+        POLYGON;
+    }
+    enum PointMarker {
+        CIRCLE,
+        PUSH_PIN,
+        STAR,
+        SQAURE,
+        TRAINGLE;
+    }
+    enum LineMarker{
+        DASHED,
+        DOTTED,
+        SOLID;
+    }
+    enum Colour{
+        BLACK,
+        ORANGE,
+        YELLOW,
+        RED;
+    }
     public static String JSON_PROPERTY = """
            "properties": {%s}""";
 

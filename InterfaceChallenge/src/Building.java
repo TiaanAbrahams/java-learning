@@ -1,17 +1,23 @@
+enum UsageType {
+    ENTERTAIMENT,
+    GOVERMENT,
+    RESIDENTAIL,
+    SPORTS
+}
 public class Building implements Mappable{
     private Geomitry point;
-    private String type;
+    private UsageType usage;
     private String name;
 
-    public Building(String name, String type) {
+    public Building(String name, UsageType usage) {
         this.name = name.toLowerCase();
-        this.type = type;
+        this.usage = usage;
         this.point = Geomitry.POINT;
     }
 
     @Override
     public String getLabel() {
-        return name;
+        return name + "(" + usage +")";
     }
 
     @Override
@@ -21,11 +27,12 @@ public class Building implements Mappable{
 
     @Override
     public String getMarker() {
-        return switch (type){
-            case "gas station" -> "fuel pump";
-            case "restaurant" -> "knife and fork";
-            case "nature reserve" -> "animal shape";
-            default -> "icon not found";
+        return switch (usage){
+            case ENTERTAIMENT -> Colour.YELLOW + " " + PointMarker.TRAINGLE;
+            case GOVERMENT -> Colour.RED + " " + PointMarker.STAR;
+            case RESIDENTAIL -> Colour.BLACK + " " + PointMarker.SQAURE;
+            case SPORTS -> Colour.ORANGE + " " + PointMarker.PUSH_PIN;
+            default -> Colour.BLACK + " " + PointMarker.CIRCLE;
         };
     }
 }
