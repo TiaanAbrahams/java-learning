@@ -5,14 +5,12 @@ enum UsageType {
     SPORTS
 }
 public class Building implements Mappable{
-    private Geomitry point;
     private UsageType usage;
     private String name;
 
     public Building(String name, UsageType usage) {
         this.name = name.toLowerCase();
         this.usage = usage;
-        this.point = Geomitry.POINT;
     }
 
     @Override
@@ -34,5 +32,11 @@ public class Building implements Mappable{
             case SPORTS -> Colour.ORANGE + " " + PointMarker.PUSH_PIN;
             default -> Colour.BLACK + " " + PointMarker.CIRCLE;
         };
+    }
+
+    @Override
+    public String toJSON() {
+        return Mappable.super.toJSON() + """
+                "name": "%s", "usage": "%s" """.formatted(name, usage);
     }
 }
