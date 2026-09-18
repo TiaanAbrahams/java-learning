@@ -12,9 +12,9 @@ public class Main {
 
         mappables.add(new UtilityLine("Australia Main pipe", UtilityLine.UsageType.SEWAGE));
 
-        Iterator<Mappable> i = mappables.iterator();
-        while (i.hasNext()){
-            Mappable.mapIt(i.next());
+        //Chang for pull request
+        for(var i: mappables){
+            Mappable.mapIt(i);
         }
     }
 }
