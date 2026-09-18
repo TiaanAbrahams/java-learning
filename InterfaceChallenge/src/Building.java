@@ -1,28 +1,23 @@
 public class Building implements Mappable{
-    private final String GEOMERTRY = "POINT";
+    private Geomitry point = Geomitry.POINT;
 
     private String usage;
     private String iconType;
-    private String label;
+    private String name;
 
-    public Building(String label, String usage) {
-        this.label = label.toLowerCase();
+    public Building(String name, String usage) {
+        this.name = name.toLowerCase();
         this.usage = usage;
     }
 
     @Override
     public String getLabel() {
-        return label;
+        return name;
     }
 
     @Override
     public String getShape() {
-        return switch (label){
-            case "gas station" -> "triangle";
-            case "restaurant" -> "pentagon";
-            case "nature reserve" -> "sqaure";
-            default -> "no shape available";
-        };
+        return Geomitry.SHAPE.getShape();
     }
 
     @Override
