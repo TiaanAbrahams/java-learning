@@ -11,8 +11,7 @@ public class Main {
         mappables.add(new Building("Stadium Australia", UsageType.SPORTS));
 
         mappables.add(new UtilityLine("Australia Main pipe", UtilityLine.UsageType.SEWAGE));
-
-        //Chang for pull request
+        
         for(var i: mappables){
             Mappable.mapIt(i);
         }
