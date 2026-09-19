@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  3.  Monster (class)
  -  It has three fields. One String called name and Two ints called hitPoints and strength.
@@ -11,5 +14,46 @@
  -  toString(), Monsters overriding toString() method. It takes no arguments and returns a String in the following format:
  Monster{name='Werewolf', hitPoints=20, strength=40}
  **/
-public class Monster {
+public class Monster implements iSaveable{
+    private String name;
+    private int hitPoints;
+    private int strength;
+
+    public Monster(String name, int hitPoints, int strength){
+        this.name = name;
+        this.hitPoints = hitPoints;
+        this.strength = strength;
+    }
+    //Getters
+    public int getHitPoints() {
+        return hitPoints;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    @Override
+    public void read(List<String> list) {
+        if(list.isEmpty() || list == null){
+            return;
+        }
+        list.add(toString());
+    }
+
+    @Override
+    public List<String> write() {
+        List<String> list = new ArrayList<>();
+        read(list);
+        return list;
+    }
+
+    @Override
+    public String toString() {
+        return "Monster{name='%s', hitPoints=%d, strength=%d}".formatted(getName(),getHitPoints(),getStrength());
+    }
 }
