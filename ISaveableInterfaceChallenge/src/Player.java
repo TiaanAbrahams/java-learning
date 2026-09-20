@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  2.  Player (class)
  -  It has four fields. Two Strings called name and weapon. Two ints called hitPoints and strength.
@@ -13,5 +15,79 @@
 
  Player{name='Tim', hitPoints=10, strength=15, weapon='Sword'}
  **/
-public class Player {
+public class Player implements iSaveable{
+    private String name;
+    private String weapon;
+    private int hitPoints;
+    private int strength;
+
+    public Player(String name, int hitPoints, int strength) {
+        this.name = name;
+        this.strength = strength;
+        this.hitPoints = hitPoints;
+        this.weapon = "sword";
+    }
+    //Getters
+    public int getHitPoints() {
+        return hitPoints;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getStrength() {
+        return strength;
+    }
+
+    public String getWeapon() {
+        return weapon;
+    }
+    //Setters
+    public void setHitPoints(int hitPoints) {
+        this.hitPoints = hitPoints;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStrength(int strength) {
+        this.strength = strength;
+    }
+
+    public void setWeapon(String weapon) {
+        this.weapon = weapon;
+    }
+
+    @Override
+    public void read(List<String> list) {
+        if(list == null || list.isEmpty()){
+            return;
+        }
+
+        setName(list.get(0));
+        setStrength(Integer.parseInt(list.get(2)));
+        setWeapon(list.get(3));
+        setHitPoints(Integer.parseInt(list.get(1)));
+    }
+
+    @Override
+    public List<String> write() {
+        return List.of(
+                getName(),
+                "%s".formatted(getHitPoints()),
+                "%s".formatted(getStrength()),
+                "%s".formatted(getWeapon()));
+    }
+
+    @Override
+    public String toString() {
+        return "Player{name='%s', hitPoints=%d, strength=%d, weapon='%s'}".formatted(
+                        getName(),
+                        getHitPoints(),
+                        getStrength(),
+                        getWeapon()
+        );
+    }
 }
