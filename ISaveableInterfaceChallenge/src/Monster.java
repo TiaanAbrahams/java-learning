@@ -14,7 +14,7 @@ import java.util.List;
  -  toString(), Monsters overriding toString() method. It takes no arguments and returns a String in the following format:
  Monster{name='Werewolf', hitPoints=20, strength=40}
  **/
-public class Monster implements iSaveable{
+public class Monster implements ISaveable {
     private String name;
     private int hitPoints;
     private int strength;

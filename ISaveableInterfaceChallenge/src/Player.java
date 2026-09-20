@@ -15,7 +15,7 @@ import java.util.List;
 
  Player{name='Tim', hitPoints=10, strength=15, weapon='Sword'}
  **/
-public class Player implements iSaveable{
+public class Player implements ISaveable {
     private String name;
     private String weapon;
     private int hitPoints;
