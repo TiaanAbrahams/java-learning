@@ -42,13 +42,17 @@ public class Monster implements iSaveable{
         if(list == null || list.isEmpty()){
             return;
         }
-        list.add(toString());
+        this.name = list.get(0);
+        this.hitPoints = Integer.parseInt(list.get(1));
+        this.strength = Integer.parseInt(list.get(2));
     }
 
     @Override
     public List<String> write() {
         List<String> list = new ArrayList<>();
-        read(list);
+        list.add(getName());
+        list.add("%s".formatted(getHitPoints()));
+        list.add("%s".formatted(getStrength()));
         return list;
     }
 
