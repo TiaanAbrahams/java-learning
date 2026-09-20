@@ -39,7 +39,7 @@ public class Monster implements iSaveable{
 
     @Override
     public void read(List<String> list) {
-        if(list.isEmpty() || list == null){
+        if(list == null || list.isEmpty()){
             return;
         }
         list.add(toString());
@@ -54,6 +54,10 @@ public class Monster implements iSaveable{
 
     @Override
     public String toString() {
-        return "Monster{name='%s', hitPoints=%d, strength=%d}".formatted(getName(),getHitPoints(),getStrength());
+        return "Monster{name='%s', hitPoints=%d, strength=%d}".
+                formatted(
+                        getName(),
+                        getHitPoints(),
+                        getStrength());
     }
 }

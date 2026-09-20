@@ -6,7 +6,6 @@ public class Main {
         iSaveable monster = new Monster("Tiaan", 50, 100);
         iSaveable danger = new Monster("Danger", 50, 100);
 
-
-
+        System.out.println(monster.write().get(0));
     }
 }
