@@ -19,10 +19,8 @@ public class BaseballTeam {
     }
 
     public void listTeamMembers(){
-        System.out.println(teamName + "Roster: ");
-        for(var player: teamMembers){
-            System.out.printf("Name : %s Position: %s%n".formatted(player.name(),player.position()));
-        }
+        System.out.println(teamName + " Roster: ");
+        System.out.println(teamMembers);
     }
 
     public int ranking(){
@@ -30,13 +28,13 @@ public class BaseballTeam {
     }
 
     public String setScore(int ourScore, int theirScore){
-        String message = "Loss Score";
+        String message = "Lost to";
         if(ourScore > theirScore){
             totalWins++;
             message = "Beat";
         }else if(ourScore == theirScore){
             totalTies++;
-            message = "d";
+            message = "Tied";
         }else {
             totalLosses++;
         }

@@ -5,8 +5,13 @@ public class Main {
         BaseballTeam phillies = new BaseballTeam("Philadelphia Phillies");
         BaseballTeam astros = new BaseballTeam("Houston Astros");
 
-        BaseballPlayer tiaan = new BaseballPlayer("Tiaan", "Centre");
-        BaseballPlayer johan = new BaseballPlayer("johan", "Goalkeeper");
+        BaseballPlayer herper = new BaseballPlayer("TB Harper", "Right Fielder");
+        BaseballPlayer march = new BaseballPlayer("B March", "Right Fielder");
+
+        phillies.addTeamMember(herper);
+        phillies.addTeamMember(march);
+
+        phillies.listTeamMembers();
 
         scoreResult(phillies, 3,astros,5);
     }
