@@ -1,4 +1,6 @@
-record BaseballPlayer(String name, String position){}
+
+interface Player{}
+record BaseballPlayer(String name, String position) implements Player{}
 
 public class Main {
     public static void main(String[] args) {
