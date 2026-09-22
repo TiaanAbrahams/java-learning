@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class SportsTeam {
+public class Team<T> {
     private String teamName;
     private List<Player> teamMembers = new ArrayList<>();
     private int totalWins = 0;
     private int totalLosses = 0;
     private int totalTies = 0;
 
-    public SportsTeam(String teamName) {
+    public Team(String teamName) {
         this.teamName = teamName;
     }
 

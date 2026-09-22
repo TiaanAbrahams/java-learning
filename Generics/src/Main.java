@@ -33,7 +33,7 @@ public class Main {
 
 
     }
-
+    //Method for BaseballPlayer
     public static void scoreResult(BaseballTeam team1 , int t1_score,
                                    BaseballTeam team2 , int t2_score){
         String message = team1.setScore(t1_score,t2_score);
@@ -41,7 +41,7 @@ public class Main {
 
         System.out.printf("%s %s %s %n", team1, message, team2);
     }
-
+    //Method for SportsTeam
     public static void scoreResult(SportsTeam team1 , int t1_score,
                                    SportsTeam team2 , int t2_score){
         String message = team1.setScore(t1_score,t2_score);
