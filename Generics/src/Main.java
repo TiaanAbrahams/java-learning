@@ -1,5 +1,5 @@
 
-interface Player{}
+interface Player {}
 record BaseballPlayer(String name, String position) implements Player{}
 record FootballPlayer(String name, String position) implements Player{}
 
@@ -12,6 +12,10 @@ public class Main {
         SportsTeam phillies1 = new SportsTeam("Philadelphia Phillies");
         SportsTeam astros1 = new SportsTeam("Houston Astros");
         scoreResult(phillies1, 3,astros1,5);
+
+        Team<BaseballPlayer> phillies2 = new Team("Philadelphia Phillies");
+        Team<BaseballPlayer> astros2 = new Team("Houston Astros");
+        scoreResult(phillies2, 3,astros2,5);
 
         BaseballPlayer herper = new BaseballPlayer("TB Harper", "Right Fielder");
         BaseballPlayer march = new BaseballPlayer("B March", "Right Fielder");
@@ -44,6 +48,14 @@ public class Main {
     //Method for SportsTeam
     public static void scoreResult(SportsTeam team1 , int t1_score,
                                    SportsTeam team2 , int t2_score){
+        String message = team1.setScore(t1_score,t2_score);
+        team2.setScore(t2_score,t1_score);
+
+        System.out.printf("%s %s %s %n", team1, message, team2);
+    }
+    //Helper method for Team
+    public static void scoreResult(Team team1 , int t1_score,
+                                   Team team2 , int t2_score){
         String message = team1.setScore(t1_score,t2_score);
         team2.setScore(t2_score,t1_score);
 
