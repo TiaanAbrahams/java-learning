@@ -8,6 +8,6 @@ public class Park extends Point{
 
     @Override
     public String toString() {
-        return "";
+        return name + " National Park";
     }
 }

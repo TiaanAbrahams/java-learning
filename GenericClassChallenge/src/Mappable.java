@@ -1,5 +1,4 @@
 public interface Mappable {
-
     void render();
     static double[] stringToLocation(String location){
         int cnt = 0;
