@@ -9,5 +9,10 @@ public class Main {
         Layer<Park> parkLayer = new Layer<>(nationalUSParks);
         parkLayer.renderLayer();
 
+        var majorUSRivers = new River[]{
+                new River("Mississippi","47.2160","-95.2348","-89.2495","35.1556","-90.0659"),
+                new River("Missouri","37.2160","-85.2348","-49.2495","35.1556","-50.0659"),
+        };
+
     }
 }
