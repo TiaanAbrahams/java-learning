@@ -7,6 +7,6 @@ public class River extends Line{
     }
 
     public String toString(){
-        return name  + " National Park";
+        return name  + " River";
     }
 }

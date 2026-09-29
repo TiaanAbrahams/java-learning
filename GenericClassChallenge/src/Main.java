@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         var nationalUSParks = new Park[]{
@@ -16,5 +20,7 @@ public class Main {
 
         Layer<River> riverLayer = new Layer<>(majorUSRivers);
         riverLayer.renderLayer();
+
+        List<Park> elm = new ArrayList<Park>(List.of(nationalUSParks));
     }
 }

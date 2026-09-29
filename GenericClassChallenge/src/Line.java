@@ -16,6 +16,6 @@ public class Line implements Mappable{
         return Arrays.deepToString(locations);
     }
     public void render() {
-        System.out.println("Render" + this + " as Point (" + location() + ")");
+        System.out.println("Render " + this + " as Point (" + location() + ")");
     }
 }
