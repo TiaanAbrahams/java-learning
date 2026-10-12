@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) {
@@ -38,6 +39,8 @@ public class Main {
         Arrays.sort(students);
         System.out.println(Arrays.toString(students));
 
-        System.out.println(tim.compareTo(students[0]));
+        Comparator gpaSorter = new StudentAComparator();
+        Arrays.sort(students, gpaSorter.reversed());
+        System.out.println(Arrays.toString(students));
     }
 }
