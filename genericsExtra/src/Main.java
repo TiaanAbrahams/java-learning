@@ -20,12 +20,12 @@ class Main {
         for(int i = 0; i < stdCount; i++){
             lpaStudents.add(new LPAStudent());
         }
-
+        printList(lpaStudents);
     }
 
-    public static void printList(List<Student> students){
-        for(Student s: students){
-            System.out.println(s);
+    public static <T extends Student> void printList(List<T> students){
+        for(var s: students){
+            System.out.println(s.getYearStarted() + ": " + s);
         }
         System.out.println();
     }
