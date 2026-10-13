@@ -1,3 +1,4 @@
+import Model.LPAStudent;
 import Model.Student;
 
 import java.util.ArrayList;
@@ -12,9 +13,13 @@ class Main {
         for(int i = 0; i < stdCount; i++){
             students.add(new Student());
         }
-
+        students.add(new LPAStudent());
         printList(students);
 
+        List<LPAStudent> lpaStudents = new ArrayList<>();
+        for(int i = 0; i < stdCount; i++){
+            lpaStudents.add(new LPAStudent());
+        }
 
     }
 
