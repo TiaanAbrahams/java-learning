@@ -1,5 +1,6 @@
 import Model.LPAStudent;
 import Model.Student;
+import util.QueryList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +28,13 @@ class Main {
 
         testList(new ArrayList<String>(List.of("Able","Barry","Charlie")));
         testList(new ArrayList<Integer>(List.of(1,2,5)));
+
+        var queryList = new QueryList<>(lpaStudents);
+        var matches = queryList.getMatches(
+                "Course", "Python");
+
+
+        printMoreList(matches);
     }
 
 //    public static <T extends Student> void printList(List<T> students){
