@@ -1,10 +1,8 @@
 import Model.LPAStudent;
 import Model.Student;
 import util.QueryList;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 class Main {
 
@@ -33,8 +31,14 @@ class Main {
         var matches = queryList.getMatches(
                 "Course", "Python");
 
-
         printMoreList(matches);
+
+        var students2021 =
+                //Little confisud how the static method is called. Is it because the return type is QueryList?
+                //Think it's because the QueryList class has a List argument constructor
+                QueryList.getMatches(students,"YEARSTARTED","2021");
+        System.out.println("-".repeat(20));
+        printMoreList(students2021);
     }
 
 //    public static <T extends Student> void printList(List<T> students){
