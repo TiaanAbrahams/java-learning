@@ -1,7 +1,5 @@
 package Model;
-
 import util.QueryItem;
-
 import java.util.Locale;
 import java.util.Random;
 
@@ -9,6 +7,7 @@ public class Student implements QueryItem {
     private String name;
     private String course;
     private int yearStarted;
+    private int stdID;
     protected static Random random = new Random();
     private static String[] firstNames = {"Ann", "Bill", "Cathy", "John", "Tim"};
     private static String[] courses = {"C++","Java","Python"};
@@ -18,11 +17,12 @@ public class Student implements QueryItem {
         name = firstNames[random.nextInt(5)] + " " + (char)lastIndex;
         course = courses[random.nextInt(3)];
         yearStarted = random.nextInt(2020, 2026);
+        stdID = random.nextInt(1000,1200);
     }
 
     @Override
     public String toString(){
-        return "%-15s %-15s %d".formatted(name, course, yearStarted);
+        return "%-15s ID:%-15d %-15s %d".formatted(name,stdID, course, yearStarted);
     }
 
     public int getYearStarted() {

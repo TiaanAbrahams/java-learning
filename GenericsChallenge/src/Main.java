@@ -22,9 +22,6 @@ class Main {
         }
         printMoreList(lpaStudents);
 
-        testList(new ArrayList<String>(List.of("Able","Barry","Charlie")));
-        testList(new ArrayList<Integer>(List.of(1,2,5)));
-
         var queryList = new QueryList<>(lpaStudents);
         var matches = queryList.getMatches(
                 "Course", "Python");
