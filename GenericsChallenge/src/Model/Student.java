@@ -1,9 +1,11 @@
 package Model;
 import util.QueryItem;
+
+import java.util.Comparator;
 import java.util.Locale;
 import java.util.Random;
 
-public class Student implements QueryItem {
+public class Student implements QueryItem, Comparable<Student> {
     private String name;
     private String course;
     private int yearStarted;
@@ -39,5 +41,10 @@ public class Student implements QueryItem {
             case "YEARSTARTED" -> yearStarted == Integer.parseInt(value);
             default -> false;
         };
+    }
+
+    @Override
+    public int compareTo(Student other) {
+        return Integer.compare(this.stdID, other.stdID);
     }
 }

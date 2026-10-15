@@ -2,12 +2,13 @@ import Model.LPAStudent;
 import Model.Student;
 import util.QueryList;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 class Main {
 
     public static void main (String[] args) {
-        int stdCount = 10;
+        int stdCount = 15;
 
         List<Student> students = new ArrayList<>();
         for(int i = 0; i < stdCount; i++){
@@ -15,6 +16,7 @@ class Main {
         }
         students.add(new LPAStudent());
         printMoreList(students);
+        Collections.sort(students);
 
         List<LPAStudent> lpaStudents = new ArrayList<>();
         for(int i = 0; i < stdCount; i++){
@@ -34,6 +36,7 @@ class Main {
                 QueryList.getMatches(students,"YEARSTARTED","2021");
         System.out.println("-".repeat(20));
         printMoreList(students2021);
+
     }
 
     public static void printMoreList(List<? extends Student> students){

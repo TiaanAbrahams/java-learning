@@ -1,8 +1,9 @@
 package util;
+import Model.LPAStudent;
 import Model.Student;
 import java.util.*;
 
-public class QueryList <T extends Student & QueryItem> extends ArrayList<T>{
+public class QueryList  <T extends Student & QueryItem>  extends ArrayList<T>{
     public QueryList(List<T> items) {
         this.addAll(items);
     }
@@ -29,4 +30,5 @@ public class QueryList <T extends Student & QueryItem> extends ArrayList<T>{
         }
         return matches;
     }
+
 }
