@@ -24,7 +24,7 @@ public class Student implements QueryItem, Comparable<Student> {
 
     @Override
     public String toString(){
-        return "%-15s ID:%-15d %-15s %d".formatted(name,stdID, course, yearStarted);
+        return "ID:%-15d %-15s %-15s %-15d".formatted(stdID, name, course, yearStarted);
     }
 
     public int getYearStarted() {

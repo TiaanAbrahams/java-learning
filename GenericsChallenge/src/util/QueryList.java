@@ -4,8 +4,10 @@ import Model.Student;
 import java.util.*;
 
 public class QueryList  <T extends Student & QueryItem>  extends ArrayList<T>{
+    public QueryList() {
+    }
     public QueryList(List<T> items) {
-        this.addAll(items);
+        super(items);
     }
     /*Having trouble understanding the depth of how this method could be static with
     changing the return type*/
@@ -20,8 +22,8 @@ public class QueryList  <T extends Student & QueryItem>  extends ArrayList<T>{
         return matches;
     }
 
-    public List<T> getMatches(String field, String value){
-        List<T> matches = new ArrayList<>();
+    public QueryList<T> getMatches(String field, String value){
+        QueryList<T> matches = new QueryList<>();
 
         for(var item: this){
             if(item.matchFieldValue(field, value)) {
