@@ -1,4 +1,5 @@
 import Model.LPAStudent;
+import Model.LPAStudentComparator;
 import Model.Student;
 import util.QueryList;
 import java.util.ArrayList;
@@ -22,6 +23,14 @@ class Main {
         var matches = lpaStudents
                 .getMatches("PercentComplete","50")
                 .getMatches("Course", "Python");
+        printMoreList(matches);
+
+        System.out.println("Sort by LPAStudentComparator()");
+        matches.sort(new LPAStudentComparator());
+        printMoreList(matches);
+
+        System.out.println("Ordered");
+        matches.sort(null);
         printMoreList(matches);
 
     }
