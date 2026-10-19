@@ -18,8 +18,8 @@ class Main {
         }
         lpaStudents.sort(Comparator.naturalOrder());
         printMoreList(lpaStudents);
-        System.out.println("Matches");
 
+        System.out.println("Matches");
         var matches = lpaStudents
                 .getMatches("PercentComplete","50")
                 .getMatches("Course", "Python");
