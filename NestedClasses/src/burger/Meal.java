@@ -1,6 +1,11 @@
 package burger;
 
 public class Meal {
+    private double base = 5.0;
+    private Item burger;
+    private Item drink;
+    private Item side;
+
     private class Item{
         private String name;
         private String type;
