@@ -1,9 +1,7 @@
-import Domain.Employee;
-import Domain.EmployeeComparator;
-import Domain.StoreEmployee;
+import domain.Employee;
+import domain.StoreEmployee;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.

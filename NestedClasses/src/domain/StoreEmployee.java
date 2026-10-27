@@ -1,4 +1,4 @@
-package Domain;
+package domain;
 import java.util.Comparator;
 
 public class StoreEmployee extends Employee{
