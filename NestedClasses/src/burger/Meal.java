@@ -13,6 +13,11 @@ public class Meal {
         side = new Item("fries", "side", 2.0);
     }
 
+    @Override
+    public String toString() {
+        return "%s%n%s%n%s%n".formatted(burger, drink, side);
+    }
+
     private class Item{
         private String name;
         private String type;
