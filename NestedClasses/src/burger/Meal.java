@@ -19,9 +19,15 @@ public class Meal {
         side = new Item("fries", "side", 2.0);
     }
 
+    public double getTotal(){
+        double total = burger.price + drink.price + side.price;
+        return  Item.getPrice(total, conversionRate);
+    }
+
     @Override
     public String toString() {
-        return "%s%n%s%n%s%n".formatted(burger, drink, side);
+        return "%s%n%s%n%s%n%26sR%.2f".formatted(burger, drink, side,
+                "Total Due: ", getTotal());
     }
 
     private class Item{
