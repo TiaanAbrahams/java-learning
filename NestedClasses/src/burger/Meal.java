@@ -6,13 +6,20 @@ public class Meal {
     private Item drink;
     private Item side;
 
+    public Meal(){
+        burger = new Item("regular", "burger");
+        drink = new Item("coke", "drink", 1.5);
+        System.out.println(drink.name);//direct access to item attributes
+        side = new Item("fries", "side", 2.0);
+    }
+
     private class Item{
         private String name;
         private String type;
         private double price;
 
         public Item(String name, String type) {
-            this(name, type, 0);
+            this(name, type, type.equalsIgnoreCase("burger")? base: 0); //setting base price if the type is burger else 0
         }
 
         public Item(String name, String type, double price) {
