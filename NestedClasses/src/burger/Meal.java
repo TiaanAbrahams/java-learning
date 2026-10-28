@@ -63,8 +63,12 @@ public class Meal {
         }
         private void addToppings(String...selectedToppings){
             for(String t: selectedToppings){
-                Extra topping = Extra.valueOf(t.toUpperCase());
-                toppings.add(new Item(topping.name(),"TOPPING", topping.getPrice()));
+                try {
+                    Extra topping = Extra.valueOf(t.toUpperCase());
+                    toppings.add(new Item(topping.name(), "TOPPING", topping.getPrice()));
+                }catch (IllegalArgumentException ie){
+                    System.out.println("No topping found for " + t);
+                }
             }
         }
         @Override
