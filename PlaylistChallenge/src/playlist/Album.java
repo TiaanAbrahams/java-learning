@@ -20,7 +20,7 @@ public class Album {
         return true;
     }
 
-    private class SongList{
+    private static class SongList{
         private ArrayList<Song> playlist = new ArrayList<>();
         public boolean addSong(Song song){
             if(!playlist.contains(song)){
