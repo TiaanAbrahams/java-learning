@@ -28,8 +28,6 @@ The member variable, constructor and all methods may be marked with private acce
 class marked with private access. However, for the purposes of this code evaluation please
 mark the class itself public static.
 
-
-
 There are only three methods in the album class.
 
 1) addSong(String title, double duration)
