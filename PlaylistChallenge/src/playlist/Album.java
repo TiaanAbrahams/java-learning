@@ -47,5 +47,9 @@ public class Album {
         }
         return false;
     }
+    public static class SongList{
+        public void add(Song song){
 
+        }
+    }
 }
