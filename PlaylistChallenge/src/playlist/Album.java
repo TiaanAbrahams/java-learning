@@ -6,30 +6,31 @@ import java.util.LinkedList;
 public class Album {
     private String album;
     private String artist;
-    ArrayList<Song> albumSongs = new ArrayList<>();
+    private SongList songList;
+
     public Album(String album, String artist) {
         this.album = album;
         this.artist = artist;
+        this.songList = new SongList();
+
     }
+
     public boolean addSong(String title, double duration){
-        boolean testCase = true;
-        for(Song s: albumSongs){
-            if(s.getTitle().equalsIgnoreCase(title)){
-                testCase = false;
-            }
+
+        if(songList.findSong(title) != null){
+            return false;
         }
-        if(testCase){
-            albumSongs.add(new Song(title, duration));
-        }
-        return testCase;
+        songList.add(new Song(title, duration));
+        return true;
     }
     public boolean addToPlayList(int trackNumber, LinkedList<Song> playList){
-        if(trackNumber <= albumSongs.size() && !playList.contains(albumSongs.get(trackNumber-1))){
-            playList.add(albumSongs.get(trackNumber-1));
+        if(songList.findSong(trackNumber -1) != null){
+            playList.add(songList.findSong(trackNumber -1));
             return true;
         }
-        return false;
-    }
+            return false;
+        }
+
 
     public boolean addToPlayList(String title, LinkedList<Song> playList){
         //Check if song is in the playlist
@@ -39,17 +40,38 @@ public class Album {
             }
         }
         //Check if song is on the album if condition is true add to the playlist
-        for(Song song: albumSongs){
-            if(song.getTitle().equalsIgnoreCase(title)){
-                playList.add(song);
-                return true;
-            }
+        if(songList.findSong(title) != null){
+            playList.add(songList.findSong(title));
         }
         return false;
     }
-    public static class SongList{
-        public void add(Song song){
+    public static class SongList {
+        private ArrayList<Song> songs = new ArrayList<>();
 
+        private boolean add(Song song){
+            if(!songs.contains(song)){
+                songs.add(song);
+                return true;
+            }
+            return false;
+        }
+
+        private Song findSong(String title){
+            if(songs.isEmpty()){
+                return null;
+            }
+            for(Song song: songs){
+                if(song.getTitle().equalsIgnoreCase(title)){
+                    return song;
+                }
+            }
+            return null;
+        }
+        private Song findSong(int trackNumber){
+            if(songs.size() >= trackNumber -1){
+                return songs.get(trackNumber -1);
+            }
+            return null;
         }
     }
 }
