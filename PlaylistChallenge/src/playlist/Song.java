@@ -11,4 +11,12 @@ public class Song {
     public String getTitle(){
         return title;
     }
+
+    @Override
+    public String toString() {
+        return "Song{" +
+                "duration=" + duration +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }

@@ -4,28 +4,27 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Album {
-    private String album;
+    private String name;
     private String artist;
-    private SongList songList;
+    private SongList songs;
 
     public Album(String album, String artist) {
-        this.album = album;
+        this.name = album;
         this.artist = artist;
-        this.songList = new SongList();
-
+        this.songs = new SongList();
     }
 
     public boolean addSong(String title, double duration){
 
-        if(songList.findSong(title) != null){
+        if(songs.findSong(title) != null){
             return false;
         }
-        songList.add(new Song(title, duration));
+        songs.add(new Song(title, duration));
         return true;
     }
     public boolean addToPlayList(int trackNumber, LinkedList<Song> playList){
-        if(songList.findSong(trackNumber) != null){
-            playList.add(songList.findSong(trackNumber));
+        if(songs.findSong(trackNumber) != null){
+            playList.add(songs.findSong(trackNumber));
             return true;
         }
         System.out.printf("This album does not have a track %d\n", trackNumber);
@@ -41,15 +40,19 @@ public class Album {
             }
         }
         //Check if song is on the album if condition is true add to the playlist
-        if(songList.findSong(title) != null){
-            playList.add(songList.findSong(title));
+        if(songs.findSong(title) != null){
+            playList.add(songs.findSong(title));
             return true;
         }
         System.out.printf("The song %s is not in this album\n", title);
         return false;
     }
     public static class SongList {
-        private ArrayList<Song> songs = new ArrayList<>();
+        private ArrayList<Song> songs;
+
+        private SongList(){
+            this.songs = new ArrayList<>();
+        }
 
         private boolean add(Song song){
             if(findSong(song.getTitle()) == null){

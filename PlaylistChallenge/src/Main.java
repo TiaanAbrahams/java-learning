@@ -24,12 +24,7 @@ public class Main {
         album.addSong("Soldier of fortune", 3.13);
 
         albums.add(album);
-        System.out.println(album.addToPlayList(3,playlist));
-        System.out.println(album.addToPlayList("Holy man", playlist));
 
-        for(Song song: playlist){
-            System.out.println(song.getTitle());
-        }
         album = new Album("For those about to rock", "AC/DC");
         album.addSong("For those about to rock", 5.44);
         album.addSong("I put the finger on you", 3.25);
