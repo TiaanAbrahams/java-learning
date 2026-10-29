@@ -1,56 +1,51 @@
 package playlist;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Album {
-    private Song song;
-    private ArrayList<Song> album = new ArrayList<>();
-
-    public Album(String title, double duration) {
-        song = new Song(title, duration);
+    private String album;
+    private String artist;
+    ArrayList<Song> albumSongs = new ArrayList<>();
+    public Album(String album, String artist) {
+        this.album = album;
+        this.artist = artist;
     }
-
     public boolean addSong(String title, double duration){
-        for(Song song: album){
-            if(song.getTitle().equalsIgnoreCase(title)){
-                return false;
+        boolean testCase = true;
+        for(Song s: albumSongs){
+            if(s.getTitle().equalsIgnoreCase(title)){
+                testCase = false;
             }
         }
-        album.add(new Song(title,duration));
-        return true;
+        if(testCase){
+            albumSongs.add(new Song(title, duration));
+        }
+        return testCase;
+    }
+    public boolean addToPlayList(int trackNumber, LinkedList<Song> playList){
+        if(trackNumber <= albumSongs.size() && !playList.contains(albumSongs.get(trackNumber-1))){
+            playList.add(albumSongs.get(trackNumber-1));
+            return true;
+        }
+        return false;
     }
 
-    private static class SongList{
-        private ArrayList<Song> playlist = new ArrayList<>();
-        public boolean addSong(Song song){
-            if(!playlist.contains(song)){
-                playlist.add(song);
+    public boolean addToPlayList(String title, LinkedList<Song> playList){
+        //Check if song is in the playlist
+        for(Song song: playList){
+            if(song.getTitle().equalsIgnoreCase(title)){
+                return  false;
+            }
+        }
+        //Check if song is on the album if condition is true add to the playlist
+        for(Song song: albumSongs){
+            if(song.getTitle().equalsIgnoreCase(title)){
+                playList.add(song);
                 return true;
             }
-            return false;
         }
-
-        public Song findSong(String title){
-            for(Song song: playlist){
-                if(song.getTitle().equalsIgnoreCase(title));
-                return song;
-            }
-            return null;
-        }
-        public Song findSong(int trackNumber){
-            if(playlist.size() >= trackNumber){
-                return playlist.get(trackNumber);
-            }
-            return null;
-        }
+        return false;
     }
+
 }
-/*
-There are only three methods in the album class.
-
-1) addSong(String title, double duration)
-
-2) addToPlayList(int trackNumber, LinkedList<Song> playList)
-
-3) addToPlayList(String title, LinkedList<Song> playList)
-*/

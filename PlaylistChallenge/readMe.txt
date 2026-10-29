@@ -81,4 +81,29 @@ Example output:
 The song Speed king is not in this album
 This album does not have a track 24
 
+**********************************************************************************************8
 
+private static class SongList{
+        private ArrayList<Song> playlist = new ArrayList<>();
+        public boolean addSong(Song song){
+            if(!playlist.contains(song)){
+                playlist.add(song);
+                return true;
+            }
+            return false;
+        }
+
+        public Song findSong(String title){
+            for(Song song: playlist){
+                if(song.getTitle().equalsIgnoreCase(title));
+                return song;
+            }
+            return null;
+        }
+        public Song findSong(int trackNumber){
+            if(playlist.size() >= trackNumber){
+                return playlist.get(trackNumber);
+            }
+            return null;
+        }
+    }
