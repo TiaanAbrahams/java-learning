@@ -24,11 +24,12 @@ public class Album {
         return true;
     }
     public boolean addToPlayList(int trackNumber, LinkedList<Song> playList){
-        if(songList.findSong(trackNumber -1) != null){
-            playList.add(songList.findSong(trackNumber -1));
+        if(songList.findSong(trackNumber) != null){
+            playList.add(songList.findSong(trackNumber));
             return true;
         }
-            return false;
+        System.out.printf("This album does not have a track %d\n", trackNumber);
+        return false;
         }
 
 
@@ -36,20 +37,22 @@ public class Album {
         //Check if song is in the playlist
         for(Song song: playList){
             if(song.getTitle().equalsIgnoreCase(title)){
-                return  false;
+                return false;
             }
         }
         //Check if song is on the album if condition is true add to the playlist
         if(songList.findSong(title) != null){
             playList.add(songList.findSong(title));
+            return true;
         }
+        System.out.printf("The song %s is not in this album\n", title);
         return false;
     }
     public static class SongList {
         private ArrayList<Song> songs = new ArrayList<>();
 
         private boolean add(Song song){
-            if(!songs.contains(song)){
+            if(findSong(song.getTitle()) == null){
                 songs.add(song);
                 return true;
             }
@@ -68,7 +71,7 @@ public class Album {
             return null;
         }
         private Song findSong(int trackNumber){
-            if(songs.size() >= trackNumber -1){
+            if(songs.size() >= trackNumber){
                 return songs.get(trackNumber -1);
             }
             return null;
