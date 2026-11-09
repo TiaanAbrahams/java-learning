@@ -15,5 +15,14 @@ public class Main {
 
         System.out.println("_".repeat(15));
         list.forEach(s -> System.out.println(s));
+        System.out.println("_".repeat(15));
+
+        int result = calculation((a ,b) -> a + b, 5 , 2);
+    }
+
+    public static <T> T calculation(Operation<T> function, T value1, T value2){
+        T result = function.operate(value1, value2);
+        System.out.println("Operation result: " + " " + result);
+        return result;
     }
 }
