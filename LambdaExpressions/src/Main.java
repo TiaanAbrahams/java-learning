@@ -45,6 +45,13 @@ public class Main {
 
         list.removeIf(s -> s.equalsIgnoreCase("bravo"));
         list.forEach(s -> System.out.println(s));
+        list.addAll(List.of("echo", "easy","earnest"));
+        list.forEach(s -> System.out.println(s));
+
+        System.out.println("_".repeat(15));
+
+        list.removeIf(s -> s.startsWith("ea"));
+        list.forEach(s -> System.out.println(s));
     }
 
     public static <T> T calculation(BinaryOperator<T> function, T value1, T value2){
