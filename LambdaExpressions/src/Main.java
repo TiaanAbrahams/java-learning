@@ -1,6 +1,9 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.BiConsumer;
+import java.util.function.BinaryOperator;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -22,11 +25,35 @@ public class Main {
         var result2 = calculation((a,b) -> a/b,10.0,2.5);
         var result3 = calculation((a,b) ->
                 a.toUpperCase(Locale.ROOT) + " " + b.toUpperCase(), "Ralph", "Kramden");
+
+        var coords = Arrays.asList(
+                new Double[]{14.1524, -15.333},
+                new Double[]{23.1124, -51.000},
+                new Double[]{23.2214, -21.224});
+
+        coords.forEach(s -> System.out.println(Arrays.toString(s)));
+
+        BiConsumer<Double, Double> p1 = (lat, lng) ->
+                System.out.printf("[lat:%.3f lon:%.3f]%n", lat, lng);
+
+        var firstPoint = coords.get(0);
+        processPoint(firstPoint[0], firstPoint[1],p1);
+
+        coords.forEach((s) -> processPoint(s[0], s[1], p1));
+        coords.forEach((s) -> processPoint(s[0], s[1],(lat, lng) ->
+                System.out.printf("[lat:%.3f lon:%.3f]%n", lat, lng) ));
+
+        list.removeIf(s -> s.equalsIgnoreCase("bravo"));
+        list.forEach(s -> System.out.println(s));
     }
 
-    public static <T> T calculation(Operation<T> function, T value1, T value2){
-        T result = function.operate(value1, value2);
+    public static <T> T calculation(BinaryOperator<T> function, T value1, T value2){
+        T result = function.apply(value1, value2);
         System.out.println("Operation result: " + " " + result);
         return result;
+    }
+
+    public static <T> void processPoint(T t1, T t2, BiConsumer<T, T> consumer){
+        consumer.accept(t1 , t2);
     }
 }
