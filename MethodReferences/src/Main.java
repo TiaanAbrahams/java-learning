@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BinaryOperator;
+import java.util.function.*;
 import java.util.*;
-import java.util.function.Supplier;
 
 
 public class Main{
@@ -14,14 +13,38 @@ public class Main{
         list.forEach(System.out::println);
         calculator(Integer::sum, 10, 25);
         calculator(Double::sum, 2.5, 7.5);
+
         calculator((s1, s2) -> s1 + s2, "Hello ", "World");
         calculator(String::concat, "Hello ", "World");
+
+        BinaryOperator<String> b1 = (s1, s2) -> s1.concat(s2);
+        BinaryOperator<String> b2 = String::concat;
+
+        UnaryOperator<String> u1 = String::toUpperCase;
+
+
+        System.out.println(b1.apply("Hello ", "World"));
+        System.out.println(b2.apply("Hello ", "World"));
+        System.out.println(u1.apply("Hello"));
+
+        String result = "Hello".transform(u1);
+        System.out.println("Result = " + result);
+
+        result = result.transform(String::toLowerCase);
+        System.out.println("Result = " + result);
+
+        BiFunction<String, String, String> b3 = (s1, s2) -> s1.concat(s2);
 
         Supplier<PlainOld> reference1 = PlainOld::new;
         PlainOld newPojo = reference1.get();
 
-
         PlainOld[] pojo1 = seedArray(PlainOld::new, 10);
+
+        Function<String, Boolean> f0 = String::isEmpty;
+        boolean resultBoolean = result.transform(f0);
+
+        System.out.println("Result = " + resultBoolean);
+
     }
 
     public static <T>  void calculator(BinaryOperator<T> function, T value1, T value2){
