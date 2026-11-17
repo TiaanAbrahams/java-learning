@@ -14,9 +14,12 @@ public class Main{
         list.forEach(System.out::println);
         calculator(Integer::sum, 10, 25);
         calculator(Double::sum, 2.5, 7.5);
+        calculator((s1, s2) -> s1 + s2, "Hello ", "World");
+        calculator(String::concat, "Hello ", "World");
 
         Supplier<PlainOld> reference1 = PlainOld::new;
         PlainOld newPojo = reference1.get();
+
 
         PlainOld[] pojo1 = seedArray(PlainOld::new, 10);
     }
