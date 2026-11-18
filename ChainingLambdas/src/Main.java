@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -58,7 +61,31 @@ public class Main {
         System.out.println("Combined2 " + combined2.test("Tim"));
         System.out.println("Combined3 " + combined3.test("Tim"));
 
+        record Person(String firstName, String lastName){}
 
+        List<Person> list = new ArrayList<>(Arrays.asList(
+                new Person("Peter", "Pan"),
+                new Person("Peter", "Pumpkineater"),
+                new Person("Minnie", "Mouse"),
+                new Person("Micky", "Mouse")
+        ));
+
+        list.sort((o1 ,o2) -> o1.lastName.compareTo(o2.lastName));
+        list.forEach(System.out::println);
+
+        System.out.println("-----------------------------------------------------");
+        list.sort(Comparator.comparing(Person::lastName));
+        list.forEach(System.out::println);
+
+        System.out.println("-----------------------------------------------------");
+        list.sort(Comparator.comparing(Person::lastName)
+                .thenComparing(Person::firstName));
+        list.forEach(System.out::println);
+
+        System.out.println("-----------------------------------------------------");
+        list.sort(Comparator.comparing(Person::lastName)
+                .thenComparing(Person::firstName).reversed());
+        list.forEach(System.out::println);
 
     }
 }
