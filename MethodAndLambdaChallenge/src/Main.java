@@ -3,8 +3,14 @@ import java.util.*;
 import java.util.function.Function;
 
 public class Main{
+    private record Person(String first){
+        public String last(String s){
+            return first + " " + s.substring(0, s.indexOf(" "));
+        }
+    }
     public static void main(String[] args) {
         Random random = new Random();
+        Person tim = new Person("Tim");
         System.out.println();
         String[] names = {"Tiaan", "bob", "Anna", "Sharon", "timmy"};
 
@@ -24,7 +30,12 @@ public class Main{
                     String surname = s.substring(0, s.indexOf(" "));
                     surname = reverseName.append(surname).reverse().toString();
 
-                    return String.format("%s %s", s ,surname);}
+                    return String.format("%s %s", s ,surname);},
+
+                s -> new String("Hello " + s),
+
+                tim::last,
+                (new Person("Mary"))::last
         ));
 
         applyFuntions(funtions, names);
