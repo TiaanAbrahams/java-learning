@@ -12,7 +12,7 @@ public class Main {
         List<Card> deck = Card.standardDeck();
         Card.printDeck(deck);
 
-        Card[] cardArray =new Card[13];
+        Card[] cardArray = new Card[13];
 
         Card aceOfHearts =Card.getFaceCard(Card.Suit.HEARTS, 'A');
         Arrays.fill(cardArray,aceOfHearts);
@@ -25,11 +25,17 @@ public class Main {
         System.out.println(cards);
         System.out.println("cards.size() = " + cards.size());
 
-        List<Card> acesOfHearts =Collections.nCopies(13, aceOfHearts);
+        List<Card> acesOfHearts = Collections.nCopies(13, aceOfHearts); //new list
         Card.printDeck(acesOfHearts, "Aces of Hearts", 1);
 
         Card kingOfClubs = Card.getFaceCard(Card.Suit.CLUBS, 'K');
-        List<Card> kingsOfClubs =Collections.nCopies(13, kingOfClubs);
+        List<Card> kingsOfClubs = Collections.nCopies(13, kingOfClubs); //new list
         Card.printDeck(kingsOfClubs, "Kings of Clubs", 1);
+
+        Collections.addAll(cards, cardArray);
+        Card.printDeck(cards, "Card Collections with Aces added", 1);
+
+        Collections.copy(cards,kingsOfClubs);
+        Card.printDeck(cards, "Card Collection with Kins copied", 1);
     }
 }
