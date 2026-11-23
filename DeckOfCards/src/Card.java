@@ -52,7 +52,7 @@ public record Card(Suit suit, String face, int rank) {
     }
 
     public static void printDeck(List<Card> deck, String description, int rows){
-        System.out.println("-".repeat(20));
+        System.out.println("-".repeat(80));
         if(description != null){
             System.out.println(description);
         }
