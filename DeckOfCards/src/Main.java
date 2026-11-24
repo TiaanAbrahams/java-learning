@@ -80,5 +80,15 @@ public class Main {
         Card tenOfClubs = Card.getNumericCard(Card.Suit.CLUBS, 10);
         Collections.replaceAll(deck2, tenOfHearts, tenOfClubs);
         Card.printDeck(deck2.subList(32, 36), "Tens row", 1);
+
+        if(Collections.replaceAll(deck2, tenOfHearts, tenOfClubs)){
+            System.out.println("Ten of Hearts was replaced with ten of clubs");
+        }else {
+            System.out.println("No matches where found");
+        }
+
+        System.out.println("Number of Ten of Clubs = " + Collections.frequency(deck2, tenOfClubs));
+        System.out.println("Best card = " + Collections.max(deck2, sortingAlgorithm));
+        System.out.println("Lowest Card = " + Collections.min(deck2, sortingAlgorithm));
     }
 }
